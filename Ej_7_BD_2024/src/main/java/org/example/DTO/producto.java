@@ -9,7 +9,7 @@ public class producto {
         int id=p.getId();
         String Nombre=p.getNombre();
         String descripcion=p.getDescripcion();
-        int Categoria_id= p.getCategoria().getId();
+        int Categoria_id=p.getCategoria().getId();
     }
     public int getId() {
         return id;

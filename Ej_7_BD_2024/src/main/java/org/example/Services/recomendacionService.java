@@ -31,11 +31,19 @@ public class recomendacionService {
         List<Double>ObtenerPromedioValoraciones=new ArrayList<>();
         try {
             session.beginTransaction();
-            String Sql1=("SELECT c.nombre AS categoria, AVG(v.valoracion) AS promedio_valoracion\n" +
-                    "FROM categorias c\n" +
-                    "INNER JOIN productos p ON c.categoria_id = p.categoria_id\n" +
-                    "INNER JOIN valoraciones v ON p.producto_id = v.producto_id\n" +
-                    "GROUP BY c.nombre;\n" + "ORDER BY promedio_valoracion DESC");
+            String Sql1=("SELECT \n" +
+                    "    c.nombre AS categoria, \n" +
+                    "    AVG(r.valoracion) AS promedio_valoracion\n" +
+                    "FROM \n" +
+                    "    categorias c\n" +
+                    "JOIN \n" +
+                    "    productos p ON c.id = p.categoria_id\n" +
+                    "JOIN \n" +
+                    "    recomendaciones r ON p.id = r.producto_id\n" +
+                    "GROUP BY \n" +
+                    "    c.nombre\n" +
+                    "ORDER BY \n" +
+                    "    promedio_valoracion DESC\n");
             Query<Double> consulta1= session.createQuery(Sql1);
             ObtenerPromedioValoraciones=consulta1.getResultList();
 

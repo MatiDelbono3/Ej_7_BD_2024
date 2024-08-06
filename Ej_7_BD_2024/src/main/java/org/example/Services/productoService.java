@@ -26,7 +26,7 @@ public class productoService {
                     "INNER JOIN recomendaciones r ON p.id =r.producto_id\n" +
                     "GROUP BY p.id, p.nombre\n" +
                     "ORDER BY total_valoraciones DESC\n" +
-                    "LIMIT 1;");
+                    "LIMIT 1");
             Query consulta3= session.createQuery(Sql3);
             ProductoConMasValoraciones=consulta3.getResultList();
             for (productos p : ProductoConMasValoraciones){
